@@ -43,7 +43,7 @@ if st.button("ENTER", type="primary"):
     # 2. วาดการทรุดตัวของผิวดิน (Settled Ground Surface)
     height_levels = np.linspace(-1.5, user1, 16)
     settled_ground = original_ground + ver_settle
-    fig.add_trace(go.Scatter(x=dist_levels, y=settled_ground, name="Settled Surface", fill='tonexty'))
+    fig.add_trace(go.Scatter(x=dist_levels, y=settled_ground, name="Settled Surface", fill='tozeroy'))
     # 3. วาดการเคลื่อนตัวของกำแพง (Wall Displacement) 
     fig.add_trace(go.Scatter(x=hor_disp, y=height_levels, mode='lines+markers',name='Wall Displacement',line=dict(color='royalblue', width=4)))
     # 4. วาดตำแหน่งกำแพงเดิม (จุดอ้างอิง x=0)
@@ -54,6 +54,10 @@ if st.button("ENTER", type="primary"):
         yaxis=dict(scaleanchor="x",scaleratio=1,range=[-2, user1 + 2]),xaxis=dict(range=[min(hor_disp) - 1, user2 + 1]),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
     st.plotly_chart(fig, use_container_width=False)
 
+    st.divider()
+    st.metric(label="Maximum Horizontal Displacement (m)", value=f"{min(hor_disp):.3f} m")
+    st.divider()
+    st.metric(label="Maximum Vertical Displacement (m)", value=f"{min(ver_settle):.3f} m")
     st.divider()
     col1, col2 = st.columns(2)
     with col1:
