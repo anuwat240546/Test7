@@ -42,7 +42,7 @@ if st.button("ENTER", type="primary"):
     fig.add_trace(go.Scatter(x=dist_levels, y=original_ground, name="Original Ground", line=dict(color='grey', dash='dash')))
     # 2. วาดการทรุดตัวของผิวดิน (Settled Ground Surface)
     height_levels = np.linspace(-1.5, user1, 16)
-    settled_ground = original_ground + (ver_settle*20)
+    settled_ground = original_ground + (ver_settle*5)
     fig.add_trace(go.Scatter(x=dist_levels, y=settled_ground, name="Vertical Displacement", fill='tozeroy'))
     fig.add_trace(go.Scatter(x=[-5, user2, user2, -5],y=[0, 0, -2, -2],fill='toself',fillcolor='rgba(200, 200, 200, 0.3)',line=dict(width=0),name="Foundation Soil"))
     # 3. วาดการเคลื่อนตัวของกำแพง (Wall Displacement) 
@@ -52,7 +52,7 @@ if st.button("ENTER", type="primary"):
     fig.add_trace(go.Scatter(x=[-1, 1], y=[-1.5, -1.5],mode='lines',name='Footing',line=dict(color='black', width=4)))
     # ตั้งค่า Layout ให้เหมือนรูปตัดขวาง
     fig.update_layout(title="MSE Wall Deformation Cross-section",xaxis_title="Horizontal Distance / Displacement (m)",yaxis_title="Elevation (m)",width=1500, height=600,
-        yaxis=dict(range=[-2, user1 + 1]),xaxis=dict(range=[-5, user2 + 1]),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
+        yaxis=dict(scaleanchor="x",scaleratio=1,range=[-2, user1 + 1]),xaxis=dict(range=[-5, user2 + 1]),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
     st.plotly_chart(fig, use_container_width=False)
 
     st.divider()
