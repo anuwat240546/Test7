@@ -52,7 +52,7 @@ if st.button("ENTER", type="primary"):
     fig.add_trace(go.Scatter(x=[-1, 1], y=[-1.5, -1.5],mode='lines',name='Footing',line=dict(color='black', width=4)))
     # ตั้งค่า Layout ให้เหมือนรูปตัดขวาง
     fig.update_layout(title="MSE Wall Deformation Cross-section",xaxis_title="Horizontal Distance / Displacement (m)",yaxis_title="Elevation (m)",width=900, height=600,
-        yaxis=dict(scaleanchor="x",scaleratio=1,range=[-2, user1 + 1]),xaxis=dict(range=[-5, user2 + 1]),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
+        yaxis=dict(range=[-2, user1 + 1]),xaxis=dict(range=[-5, user2 + 1]),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
     st.plotly_chart(fig, use_container_width=False)
 
     st.divider()
