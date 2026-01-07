@@ -43,16 +43,16 @@ if st.button("ENTER", type="primary"):
     # 2. วาดการทรุดตัวของผิวดิน (Settled Ground Surface)
     height_levels = np.linspace(-1.5, user1, 16)
     settled_ground = original_ground + ver_settle
-    fig.add_trace(go.Scatter(x=dist_levels, y=settled_ground, name="Settled Surface", fill='tozeroy'))
+    fig.add_trace(go.Scatter(x=dist_levels, y=settled_ground, name="Vertical Displacement", fill='tozeroy'))
     fig.add_trace(go.Scatter(x=[-5, user2 + 1, user2 + 1, -5],y=[0, 0, -2, -2],fill='toself',fillcolor='rgba(200, 200, 200, 0.3)',line=dict(width=0),name="Foundation Soil"))
     # 3. วาดการเคลื่อนตัวของกำแพง (Wall Displacement) 
-    fig.add_trace(go.Scatter(x=hor_disp, y=height_levels, mode='lines+markers',name='Wall Displacement',line=dict(color='royalblue', width=4)))
+    fig.add_trace(go.Scatter(x=hor_disp, y=height_levels, mode='lines+markers',name='Horizontal Displacement',line=dict(color='royalblue', width=4)))
     # 4. วาดตำแหน่งกำแพงเดิม (จุดอ้างอิง x=0)
     fig.add_trace(go.Scatter(x=[0, 0], y=[-1.5, user1],mode='lines',name='Original Wall Position',line=dict(color='black', width=1)))
     fig.add_trace(go.Scatter(x=[-1, 1], y=[-1.5, -1.5],mode='lines',name='Footing',line=dict(color='black', width=4)))
     # ตั้งค่า Layout ให้เหมือนรูปตัดขวาง
     fig.update_layout(title="MSE Wall Deformation Cross-section",xaxis_title="Horizontal Distance / Displacement (m)",yaxis_title="Elevation (m)",width=900, height=600,
-        yaxis=dict(scaleanchor="x",scaleratio=1,range=[-2, user1 + 1],fixedrange=True),xaxis=dict(range=[-5, user2 + 1],fixedrange=False),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
+        yaxis=dict(scaleanchor="x",scaleratio=1,range=[-2, user1 + 1]),xaxis=dict(range=[-5, user2 + 1]),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
     st.plotly_chart(fig, use_container_width=False)
 
     st.divider()
