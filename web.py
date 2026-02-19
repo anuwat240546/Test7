@@ -3,6 +3,7 @@ import plotly.graph_objects as go
 import numpy as np
 import pandas as pd
 import joblib
+import math
 from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import load_model
@@ -50,6 +51,17 @@ if st.button("ENTER", type="primary"):
     # 4. วาดตำแหน่งกำแพงเดิม (จุดอ้างอิง x=0)
     fig.add_trace(go.Scatter(x=[0, 0], y=[-1.5, user1],mode='lines',name='Original Wall Position',line=dict(color='black', width=1)))
     fig.add_trace(go.Scatter(x=[-1, 1], y=[-1.5, -1.5],mode='lines',name='Footing',line=dict(color='black', width=4)))
+    # 5. วาดเส้นจีโอกริด
+    ratio = user1 / user3
+    if abs(ratio - round(ratio)) < 1e-6: 
+        num_geogrids = int(round(ratio)) - 1
+    else:
+        num_geogrids = math.floor(ratio)
+
+    geogrid_y_levels = [user3 * (i + 1) for i in range(num_geogrids)]
+    
+    for i, y_elev in enumerate(geogrid_y_levels):
+        fig.add_trace(go.Scatter(x=[0, user4],y=[y_elev, y_elev],mode='lines',line=dict(color='forestgreen', width=2, dash='dot'),name="Geogrid",showlegend=(i == 0)))
     # ตั้งค่า Layout ให้เหมือนรูปตัดขวาง
     fig.update_layout(title="MSE Wall Deformation Cross-section",xaxis_title="Horizontal Distance / Displacement (m)",yaxis_title="Elevation (m)",width=1500, height=600,
         yaxis=dict(scaleanchor="x",scaleratio=1,range=[-2, user1 + 1]),xaxis=dict(range=[-10, user2 + 5]),template="plotly_white",margin=dict(l=40, r=40, t=60, b=40))
