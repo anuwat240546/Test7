@@ -8,6 +8,7 @@ from sklearn.preprocessing import StandardScaler
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import load_model
 from tensorflow.keras.losses import MeanSquaredError
+st.set_page_config(page_title="MSE Wall Prediction",layout="wide")
 @st.cache_resource
 def load_assets():
     sc_in = joblib.load('scaler_All_input.pkl')
@@ -82,4 +83,6 @@ if st.button("ENTER", type="primary"):
             st.success("Status: Safety")
 else :
     st.info("Please complete all fields to proceed.")
+st.subheader("Preliminary study purpose. Not intended for final design.")
+
 
