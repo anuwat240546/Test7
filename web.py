@@ -10,10 +10,12 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.losses import MeanSquaredError
 
 st.set_page_config(page_title="MSE Wall Prediction", layout="wide")
-try:
-    st.image("logo.png", width=150) 
-except:
-    st.write("(พื้นที่สำหรับใส่โลโก้ - โปรดอัปโหลดไฟล์รูปภาพ)")
+col1, col2, col3 = st.columns([2, 1, 2]) 
+with col2:
+    try:
+        st.image("logo.png", use_container_width=True) 
+    except:
+        st.markdown("<div style='text-align: center;'>(พื้นที่สำหรับใส่โลโก้)</div>", unsafe_allow_html=True)
 @st.cache_resource
 def load_assets():
     sc_in = joblib.load('scaler_All_input.pkl')
@@ -100,6 +102,7 @@ else :
 
 st.divider()
 st.warning("For preliminary study only. Not for design.")
+
 
 
 
