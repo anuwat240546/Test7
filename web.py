@@ -83,6 +83,7 @@ if st.button("ENTER", type="primary"):
             st.success("Status: Safety")
 else :
     st.info("Please complete all fields to proceed.")
-st.subheader("Preliminary study purpose. Not intended for final design.")
+st.subheader("For preliminary study only. Not for design.")
+
 
 
