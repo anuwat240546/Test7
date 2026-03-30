@@ -33,13 +33,13 @@ user1 = st.number_input("Height of wall (m) : ", min_value=0.1, value=6.0)
 user2 = st.number_input("Distance behind the wall (m) : ", min_value=0.1, value=15.0)
 user3 = st.number_input("Spacing of Geogrid (m) : ", min_value=0.1, value=0.5)
 user4 = st.number_input("Length of Geogrid (m) : ", min_value=0.1, value=6.0)
-user5 = st.number_input("Axial Stiffness of Geogrid (KN/m) : ", min_value=0.1, value=3200.0)
+user5 = st.number_input("Axial Stiffness of Geogrid (kN/m) : ", min_value=0.1, value=3200.0)
 
 if st.button("ENTER", type="primary"):
     user_input = {
         'Spacing of Geogrid (m)': user3/user4,
         'Length of Geogrid (m)': user4/user1,
-        'EA of Geogrid (KN/m)': user5,
+        'EA of Geogrid (kN/m)': user5,
         'Distance behind the wall' : user2/15}
     user_df = pd.DataFrame([user_input])
     user_scaled = scaler.transform(user_df)
