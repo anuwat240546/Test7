@@ -39,7 +39,7 @@ if st.button("ENTER", type="primary"):
     user_input = {
         'Spacing of Geogrid (m)': user3/user4,
         'Length of Geogrid (m)': user4/user1,
-        'EA of Geogrid (kN/m)': user5,
+        'EA of Geogrid (KN/m)': user5,
         'Distance behind the wall' : user2/15}
     user_df = pd.DataFrame([user_input])
     user_scaled = scaler.transform(user_df)
